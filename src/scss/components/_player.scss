@@ -1,3 +1,11 @@
+.player {
+  display: flex;
+  flex-direction: column;
+}
+
+.healthBar {
+  width: 400px;
+}
 .deck {
   width: 100vw;
   margin: auto;

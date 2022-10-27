@@ -4,6 +4,23 @@
 }
 
 .monster {
+  &__health {
+    margin: 10px 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    figcaption {
+      color: white;
+      position: absolute;
+      z-index: 10;
+    }
+    &--healthBar {
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+    }
+  }
   &__information {
     display: flex;
     justify-content: space-between;

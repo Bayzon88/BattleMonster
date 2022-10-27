@@ -1,5 +1,7 @@
+import HealthBar from "react-bootstrap/ProgressBar";
 import { FC, useState } from "react";
 import { MonsterContainerProps } from "../../interfaces";
+
 interface MonsterProp {
   monster: MonsterContainerProps;
 }
@@ -24,12 +26,21 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
             src={monster.image}
             className='figure-img img-fluid rounded monster__image'
             alt='...'
-            width={"400px"}
-            height='400px'
+            width={"300px"}
+            height='300px'
           />
+          <span className='monster__health'>
+            <HealthBar
+              className='monster__health--healthBar'
+              now={currentHealth}
+              max={monster.maxHP}
+            />
+            <figcaption className='figure-caption'>
+              {currentHealth}/{monster.maxHP}
+            </figcaption>
+          </span>
           <span className='monster__information'>
             <figcaption className='figure-caption'>{monster.name}</figcaption>
-            <figcaption className='figure-caption'>{currentHealth}</figcaption>
           </span>
           <button
             onClick={() => {
