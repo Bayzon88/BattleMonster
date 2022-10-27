@@ -1,0 +1,11 @@
+.monsterContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.monster {
+  &__information {
+    display: flex;
+    justify-content: space-between;
+  }
+}

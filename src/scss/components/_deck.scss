@@ -1,0 +1,13 @@
+.deck {
+  width: 100vw;
+  margin: auto;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+
+  &__card {
+    cursor: pointer;
+  }
+}

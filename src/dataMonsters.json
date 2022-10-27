@@ -1,0 +1,23 @@
+[
+  {
+    "monsterID": 1,
+    "maxHP": 1000,
+    "name": "Monster1",
+    "image": "https://images.unsplash.com/photo-1561084746-f360502e5abe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "damage": 10
+  },
+  {
+    "monsterID": 2,
+    "maxHP": 1500,
+    "name": "Monster2",
+    "image": "https://images.unsplash.com/photo-1624202270738-3b72ae7e5e35?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "damage": 10
+  },
+  {
+    "monsterID": 3,
+    "maxHP": 750,
+    "name": "Monster3",
+    "image": "https://images.unsplash.com/photo-1588422333078-44ad73367bcb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fG1vbnN0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+    "damage": 10
+  }
+]
