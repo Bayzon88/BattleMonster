@@ -1,12 +1,14 @@
-import { FC, SetStateAction, useState, useEffect, MouseEventHandler } from "react";
-import { CardProps } from "../../../interfaces";
-import { generateRandomNumber } from "../../../functions";
+import { FC, SetStateAction, useState, useEffect, useContext, MouseEventHandler } from "react";
+import { CardProps } from "../../../utilities/interfaces";
+import { generateRandomNumber } from "../../../utilities/functions";
+import { MonsterContext } from "../../../context/MonsterContext";
 
 interface CardContainerProps {
   cards: CardProps[];
 }
 
 const CardContainer: FC<CardContainerProps> = (cards) => {
+  const monsterContext = useContext(MonsterContext);
   const [deckOfFiveCards, setDeckOfFiveCards] = useState<CardProps[]>([]);
   const randNumbers: number[] = [];
   //Choose 5 random cards from the original deck of 20
@@ -27,32 +29,36 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
     createDeckOfCards();
   }, []);
 
-  function removeCardFromDeck(removeCard: number): CardProps[] {
-    //When using a card from the deck, the card will be removed and a new random card will appear
-    //Remove the used card from the deck, now only 4 cards remain
+  function removeCardFromDeck(removeCard: CardProps): void {
+    //Pass selected card damage to the context provider
+    monsterContext?.setDamageFromCard(removeCard.damage);
 
-    //Create temporal deck of cards, removing the desired card from the original deck
-    const temporalDeck: CardProps[] = deckOfFiveCards.filter((card) => card.cardID != removeCard);
+    // wait 10 seconds before executing the removal
+    setTimeout(() => {
+      //When using a card from the deck, the card will be removed and a new random card will appear
+      //Remove the used card from the deck, now only 4 cards remain
 
-    let isDuplicated: boolean = true;
-    //Insert a new card into the array if it's not duplicated
-    while (isDuplicated) {
-      //Create a new Random card
-      let randomCard: number = generateRandomNumber(cards.cards.length);
-      //Check if random card already exists in the deck
-      //Undefined means it doesn't exists
-      const findingDuplicatedCard: CardProps | undefined = temporalDeck.find(
-        (card) => card.cardID == randomCard
-      );
-      if (findingDuplicatedCard === undefined) {
-        //Insert a new card on the temporal deck
-        temporalDeck.push(cards.cards[randomCard]);
-        isDuplicated = false;
+      //Create temporal deck of cards, removing the desired card from the original deck
+      const temporalDeck: CardProps[] = deckOfFiveCards.filter((card) => card != removeCard);
+      let isDuplicated: boolean = true;
+      //Insert a new card into the array if it's not duplicated
+      while (isDuplicated) {
+        //Create a new Random card
+        let randomCard: number = generateRandomNumber(cards.cards.length);
+        //Check if random card already exists in the deck
+        //Undefined means it doesn't exists
+        const findingDuplicatedCard: CardProps | undefined = temporalDeck.find(
+          (card) => card.cardID == randomCard
+        );
+        if (findingDuplicatedCard === undefined) {
+          //Insert a new card on the temporal deck
+          temporalDeck.push(cards.cards[randomCard]);
+          isDuplicated = false;
+        }
       }
-    }
-
-    //Return new deck of five cards
-    return temporalDeck;
+      //Return new deck of five cards
+      setDeckOfFiveCards(temporalDeck);
+    }, 100);
   }
 
   return (
@@ -63,7 +69,7 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
             <div
               className='deck__card'
               onClick={() => {
-                setDeckOfFiveCards(removeCardFromDeck(card.cardID));
+                removeCardFromDeck(card);
               }}
               id={card.cardID.toString()}
               key={card.cardID}

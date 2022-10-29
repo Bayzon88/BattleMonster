@@ -10795,7 +10795,12 @@ textarea.form-control-lg {
 }
 .monster__information {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.monsterSelected {
+  box-shadow: 5px 5px 10px black;
 }
 
 .player {

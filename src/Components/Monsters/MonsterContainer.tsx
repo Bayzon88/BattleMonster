@@ -1,9 +1,10 @@
 import Monster from "./Monster";
-import { MonsterContainerProps } from "../../interfaces";
-import { generateRandomNumber } from "../../functions";
-
+import { MonsterContainerProps } from "../../utilities/interfaces";
+import { generateRandomNumber } from "../../utilities/functions";
+import { useState, useContext } from "react";
+import { MonsterContext, MonsterContextProvider } from "../../context/MonsterContext";
+const monsters: MonsterContainerProps[] = require("../../data/dataMonsters.json");
 export default function MonsterContainer() {
-  const monsters: MonsterContainerProps[] = require("../../dataMonsters.json");
   //Select 2 random monsters from the array
   const randomMonsterIndex: number[] = [];
   let loop = 0;

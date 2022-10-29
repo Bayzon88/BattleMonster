@@ -38,147 +38,147 @@
     "cardName": "card5",
     "cardID": 5,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 98,
     "image": "https://picsum.photos/197/202"
   },
   {
     "cardName": "card6",
     "cardID": 6,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 97,
     "image": "https://picsum.photos/196/203"
   },
   {
     "cardName": "card7",
     "cardID": 7,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 96,
     "image": "https://picsum.photos/195/205"
   },
   {
     "cardName": "card8",
     "cardID": 8,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 95,
     "image": "https://picsum.photos/200/201"
   },
   {
     "cardName": "card9",
     "cardID": 9,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 94,
     "image": "https://picsum.photos/201/201"
   },
   {
     "cardName": "card10",
     "cardID": 10,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 93,
     "image": "https://picsum.photos/202/201"
   },
   {
     "cardName": "card11",
     "cardID": 11,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 92,
     "image": "https://picsum.photos/203/199"
   },
   {
     "cardName": "card12",
     "cardID": 12,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 91,
     "image": "https://picsum.photos/203/198"
   },
   {
     "cardName": "card13",
     "cardID": 13,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 90,
     "image": "https://picsum.photos/204/201"
   },
   {
     "cardName": "card14",
     "cardID": 14,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 101,
     "image": "https://picsum.photos/205/201"
   },
   {
     "cardName": "card15",
     "cardID": 15,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 102,
     "image": "https://picsum.photos/201/201"
   },
   {
     "cardName": "card16",
     "cardID": 16,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 103,
     "image": "https://picsum.photos/194/201"
   },
   {
     "cardName": "card17",
     "cardID": 17,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 104,
     "image": "https://picsum.photos/198/202"
   },
   {
     "cardName": "card18",
     "cardID": 18,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 105,
     "image": "https://picsum.photos/198/203"
   },
   {
     "cardName": "card19",
     "cardID": 19,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 106,
     "image": "https://picsum.photos/198/200"
   },
   {
     "cardName": "card20",
     "cardID": 20,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 107,
     "image": "https://picsum.photos/197/201"
   },
   {
     "cardName": "card21",
     "cardID": 21,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 108,
     "image": "https://picsum.photos/197/202"
   },
   {
     "cardName": "card22",
     "cardID": 22,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 109,
     "image": "https://picsum.photos/197/199"
   },
   {
     "cardName": "card23",
     "cardID": 23,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 110,
     "image": "https://picsum.photos/199/199"
   },
   {
     "cardName": "card24",
     "cardID": 24,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 111,
     "image": "https://picsum.photos/198/199"
   },
   {
     "cardName": "card25",
     "cardID": 25,
     "manaCost": 10,
-    "damage": 100,
+    "damage": 112,
     "image": "https://picsum.photos/198/207"
   }
 ]
