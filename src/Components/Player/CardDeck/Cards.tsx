@@ -2,6 +2,7 @@ import { FC, SetStateAction, useState, useEffect, useContext, MouseEventHandler 
 import { CardProps } from "../../../utilities/interfaces";
 import { generateRandomNumber } from "../../../utilities/functions";
 import { GameContext } from "../../../context/GameContext";
+import { GameController } from "../../../context/GameController";
 
 interface CardContainerProps {
   cards: CardProps[];
@@ -9,6 +10,7 @@ interface CardContainerProps {
 
 const CardContainer: FC<CardContainerProps> = (cards) => {
   const gameContextProvider = useContext(GameContext);
+  const gameControllerProvider = useContext(GameController);
   const [deckOfFiveCards, setDeckOfFiveCards] = useState<CardProps[]>([]);
   const randNumbers: number[] = [];
   //Choose 5 random cards from the original deck of 20
@@ -35,19 +37,22 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
     gameContextProvider?.setDamageFromCard(removeCard.damage);
     console.log(gameContextProvider?.selectedMonster);
     gameContextProvider?.setMana((prev) => {
-      if (
-        prev === 0 ||
-        prev - removeCard.manaCost < 0 ||
-        gameContextProvider?.selectedMonster.name == "no"
-      ) {
+      if (prev === 0 || prev - removeCard.manaCost < 0) {
         //If mana below 0 after attack, game over
         gameContextProvider?.setIsGameOver(true);
         return prev;
+      } else if (gameContextProvider.selectedMonster.name === "no") {
+        return prev;
       } else {
+        //reduce mana
         return prev - removeCard.manaCost;
       }
     });
-    // wait 10 seconds before executing the removal
+    //Add animation for removed card
+    const cardAnimation: HTMLElement | null = document.getElementById(removeCard.cardID.toString());
+    cardAnimation?.classList.add("cardAttack");
+
+    //Delay to wait for animation of the card
     setTimeout(() => {
       //When using a card from the deck, the card will be removed and a new random card will appear
       //Remove the used card from the deck, now only 4 cards remain
@@ -71,9 +76,10 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
           isDuplicated = false;
         }
       }
+      gameControllerProvider?.setCurrentTurn("Monster");
       //Return new deck of five cards
       setDeckOfFiveCards(temporalDeck);
-    }, 100);
+    }, 2000);
   }
 
   return (
@@ -84,17 +90,21 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
             <div
               className='deck__card'
               onClick={() => {
-                if (!gameContextProvider?.isGameOver) removeCardFromDeck(card);
+                if (
+                  !gameContextProvider?.isGameOver &&
+                  gameControllerProvider?.currentTurn == "Player"
+                )
+                  removeCardFromDeck(card);
               }}
               id={card.cardID.toString()}
               key={card.cardID}
               style={{ width: "19.5%", maxWidth: "198px", height: "198px" }}
             >
-              <div className='nes-container is-rounded'>
+              <div className='nes-container is-rounded' style={{ minHeight: "150px" }}>
                 <div className='card-body'>
                   <h2>{card.cardName}</h2>
-                  <p>Damage: {card.damage}</p>
-                  <p>Mana: {card.manaCost}</p>
+                  <h3>Damage: {card.damage}</h3>
+                  <h4>Mana: {card.manaCost}</h4>
                 </div>
               </div>
             </div>
@@ -106,8 +116,3 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
 };
 
 export default CardContainer;
-
-//   <div className='cardContainer' key={card.cardID}>
-//
-//
-//   </div>

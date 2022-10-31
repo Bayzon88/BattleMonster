@@ -32,3 +32,8 @@ export interface MonsterContextType {
   isGameOver: boolean;
   setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface GameControllerType {
+  currentTurn: string;
+  setCurrentTurn: React.Dispatch<React.SetStateAction<string>>;
+}

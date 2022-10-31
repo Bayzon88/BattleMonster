@@ -4,7 +4,10 @@ import { generateRandomNumber } from "../../utilities/functions";
 import { useState, useContext } from "react";
 import { GameContext, GameContextProvider } from "../../context/GameContext";
 const monsters: MonsterContainerProps[] = require("../../data/dataMonsters.json");
+
 export default function MonsterContainer() {
+  //Turn counter
+  const [monsterTurnCount, setMonsterTurnCount] = useState<number>(0);
   //Select 2 random monsters from the array
   const randomMonsterIndex: number[] = [];
   let loop = 0;

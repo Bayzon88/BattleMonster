@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { MonsterContainerProps, MonsterContextType } from "../utilities/interfaces";
+import { GameController } from "./GameController";
 
 const defaultMonsterValue: MonsterContainerProps = {
   monsterID: 0,
@@ -38,10 +39,7 @@ export const GameContextProvider = ({ children }: any) => {
     selectedMonster.currentHealth -= damageFromCard;
   };
 
-  useEffect(() => {}, [damageFromCard]);
-  useEffect(() => {
-    console.log("Changing Current Health: " + selectedMonster.currentHealth);
-  }, [selectedMonster.currentHealth]);
+  useEffect(() => {}, [selectedMonster.currentHealth]);
   return (
     <GameContext.Provider
       value={{
