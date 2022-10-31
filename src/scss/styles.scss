@@ -1,3 +1,15 @@
+.app-container {
+  margin-top: 1%;
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-inline: auto;
+
+  overflow-x: hidden;
+}
+
 @import "./components/custom";
 @import "./components/monster";
 @import "./components/player";

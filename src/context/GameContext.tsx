@@ -10,18 +10,30 @@ const defaultMonsterValue: MonsterContainerProps = {
   currentHealth: 0,
 };
 
-export const MonsterContext = createContext<MonsterContextType | null>(null);
+export const GameContext = createContext<MonsterContextType | null>(null);
 
-export const MonsterContextProvider = ({ children }: any) => {
+export const GameContextProvider = ({ children }: any) => {
+  //State to Manage if the game is over
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+
   //State to check which monster has been selected by clicking on it.
   const [selectedMonster, setSelectedMonster] =
     useState<MonsterContainerProps>(defaultMonsterValue);
 
+  // ****************************************************
+  //State to check health and mana
+  const [playerHealth, setPlayerHealth] = useState<number>(1000);
+  const [mana, setMana] = useState<number>(100);
+
+  // ****************************************************
   //State for damage from the card, will get data from the child
   const [damageFromCard, setDamageFromCard] = useState<number>(0);
+  //State for mana from the card, will get data from the child
+  const [manaFromCard, setManaFromCard] = useState<number>(0);
 
+  // ****************************************************
   //calculate hp for monster after attack
-  const decreaseMonstersHP = (damageFromCard: number): void => {
+  const attackMonster = (damageFromCard: number, manaFromCard: number): void => {
     let updatedMonstersHP: number;
     selectedMonster.currentHealth -= damageFromCard;
   };
@@ -31,16 +43,24 @@ export const MonsterContextProvider = ({ children }: any) => {
     console.log("Changing Current Health: " + selectedMonster.currentHealth);
   }, [selectedMonster.currentHealth]);
   return (
-    <MonsterContext.Provider
+    <GameContext.Provider
       value={{
         selectedMonster,
         setSelectedMonster,
-        decreaseMonstersHP,
+        attackMonster,
         damageFromCard,
         setDamageFromCard,
+        manaFromCard,
+        setManaFromCard,
+        mana,
+        setMana,
+        playerHealth,
+        setPlayerHealth,
+        isGameOver,
+        setIsGameOver,
       }}
     >
       {children}{" "}
-    </MonsterContext.Provider>
+    </GameContext.Provider>
   );
 };

@@ -2,7 +2,7 @@ import Monster from "./Monster";
 import { MonsterContainerProps } from "../../utilities/interfaces";
 import { generateRandomNumber } from "../../utilities/functions";
 import { useState, useContext } from "react";
-import { MonsterContext, MonsterContextProvider } from "../../context/MonsterContext";
+import { GameContext, GameContextProvider } from "../../context/GameContext";
 const monsters: MonsterContainerProps[] = require("../../data/dataMonsters.json");
 export default function MonsterContainer() {
   //Select 2 random monsters from the array

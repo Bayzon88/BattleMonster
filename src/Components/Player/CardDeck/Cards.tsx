@@ -1,14 +1,14 @@
 import { FC, SetStateAction, useState, useEffect, useContext, MouseEventHandler } from "react";
 import { CardProps } from "../../../utilities/interfaces";
 import { generateRandomNumber } from "../../../utilities/functions";
-import { MonsterContext } from "../../../context/MonsterContext";
+import { GameContext } from "../../../context/GameContext";
 
 interface CardContainerProps {
   cards: CardProps[];
 }
 
 const CardContainer: FC<CardContainerProps> = (cards) => {
-  const monsterContext = useContext(MonsterContext);
+  const gameContextProvider = useContext(GameContext);
   const [deckOfFiveCards, setDeckOfFiveCards] = useState<CardProps[]>([]);
   const randNumbers: number[] = [];
   //Choose 5 random cards from the original deck of 20
@@ -30,9 +30,23 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
   }, []);
 
   function removeCardFromDeck(removeCard: CardProps): void {
-    //Pass selected card damage to the context provider
-    monsterContext?.setDamageFromCard(removeCard.damage);
-
+    // ***************************************************
+    //Pass selected card damage  and mana to the context provider
+    gameContextProvider?.setDamageFromCard(removeCard.damage);
+    console.log(gameContextProvider?.selectedMonster);
+    gameContextProvider?.setMana((prev) => {
+      if (
+        prev === 0 ||
+        prev - removeCard.manaCost < 0 ||
+        gameContextProvider?.selectedMonster.name == "no"
+      ) {
+        //If mana below 0 after attack, game over
+        gameContextProvider?.setIsGameOver(true);
+        return prev;
+      } else {
+        return prev - removeCard.manaCost;
+      }
+    });
     // wait 10 seconds before executing the removal
     setTimeout(() => {
       //When using a card from the deck, the card will be removed and a new random card will appear
@@ -41,6 +55,7 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
       //Create temporal deck of cards, removing the desired card from the original deck
       const temporalDeck: CardProps[] = deckOfFiveCards.filter((card) => card != removeCard);
       let isDuplicated: boolean = true;
+
       //Insert a new card into the array if it's not duplicated
       while (isDuplicated) {
         //Create a new Random card
@@ -69,23 +84,18 @@ const CardContainer: FC<CardContainerProps> = (cards) => {
             <div
               className='deck__card'
               onClick={() => {
-                removeCardFromDeck(card);
+                if (!gameContextProvider?.isGameOver) removeCardFromDeck(card);
               }}
               id={card.cardID.toString()}
               key={card.cardID}
-              style={{ width: "198px", height: "350px" }}
+              style={{ width: "19.5%", maxWidth: "198px", height: "198px" }}
             >
-              <img
-                draggable={false}
-                src={card.image}
-                className='card-img-top'
-                alt=''
-                style={{ height: "190px" }}
-              />
-              <div className='card-body'>
-                <h2>{card.cardName}</h2>
-                <p>Damage: {card.damage}</p>
-                <p>Mana: {card.manaCost}</p>
+              <div className='nes-container is-rounded'>
+                <div className='card-body'>
+                  <h2>{card.cardName}</h2>
+                  <p>Damage: {card.damage}</p>
+                  <p>Mana: {card.manaCost}</p>
+                </div>
               </div>
             </div>
           );

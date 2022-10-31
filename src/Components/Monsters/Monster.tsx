@@ -2,14 +2,14 @@ import HealthBar from "react-bootstrap/ProgressBar";
 import React, { FC, useEffect, useState } from "react";
 import { MonsterContainerProps } from "../../utilities/interfaces";
 import { useContext } from "react";
-import { MonsterContext } from "../../context/MonsterContext";
+import { GameContext } from "../../context/GameContext";
 
 interface MonsterProp {
   monster: MonsterContainerProps;
 }
 
 const Monster: FC<MonsterProp> = ({ monster }) => {
-  const monsterContextProvider = useContext(MonsterContext);
+  const gameContextProvider = useContext(GameContext);
 
   const [currentHealth, setCurrentHealth] = useState<number>(monster.maxHP);
 
@@ -27,11 +27,15 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
   useEffect(() => {
     //Check if the current monster is selected
 
-    if (monsterContextProvider?.selectedMonster === monster) {
-      let dmg: number = monsterContextProvider?.damageFromCard;
+    if (
+      gameContextProvider?.selectedMonster === monster &&
+      gameContextProvider.isGameOver == false
+    ) {
+      let dmg: number = gameContextProvider?.damageFromCard;
+
       setCurrentHealth((prev) => prev - dmg);
     }
-  }, [monsterContextProvider?.damageFromCard]);
+  }, [gameContextProvider?.damageFromCard]);
 
   // useEffect(() => {
   //   monster.currentHealth = currentHealth;
@@ -42,16 +46,16 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
   // }, [currentHealth]);
 
   const toggleSelectAnimation = (e: React.MouseEvent<HTMLElement>) => {
-    monsterContextProvider?.setSelectedMonster(monster);
+    gameContextProvider?.setSelectedMonster(monster);
     e.currentTarget.classList.toggle("monsterSelected");
   };
 
   return (
     <>
-      <section onClick={(e) => toggleSelectAnimation(e)} id={monster.name} className='monster'>
-        <figure className='figure'>
-          <span className='monster__information'>
-            <figcaption className='figure-caption'>{monster.name}</figcaption>
+      <section onClick={(e) => toggleSelectAnimation(e)} id={monster.name} className=''>
+        <figure className='figure monster'>
+          <span className='monster__information '>
+            <figcaption className='figure-caption nes-text is-primary'>{monster.name}</figcaption>
           </span>
           <img
             src={monster.image}
@@ -61,11 +65,12 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
             height='300px'
           />
           <span className='monster__health'>
-            <HealthBar
-              className='monster__health--healthBar'
-              now={currentHealth}
+            <progress
+              className='nes-progress is-error monster__health--healthBar'
+              value={currentHealth}
               max={monster.maxHP}
-            />
+            ></progress>
+
             <figcaption className='figure-caption'>
               {currentHealth}/{monster.maxHP}
             </figcaption>

@@ -22,5 +22,13 @@ export interface MonsterContextType {
   setSelectedMonster: React.Dispatch<React.SetStateAction<MonsterContainerProps>>;
   damageFromCard: number;
   setDamageFromCard: React.Dispatch<React.SetStateAction<number>>;
-  decreaseMonstersHP: (damageFromCard: number) => void;
+  attackMonster: (damageFromCard: number, manaFromCard: number) => void;
+  manaFromCard: number;
+  setManaFromCard: React.Dispatch<React.SetStateAction<number>>;
+  mana: number;
+  setMana: React.Dispatch<React.SetStateAction<number>>;
+  playerHealth: number;
+  setPlayerHealth: React.Dispatch<React.SetStateAction<number>>;
+  isGameOver: boolean;
+  setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -1,15 +1,19 @@
 import MonsterContainer from "./Components/Monsters/MonsterContainer";
 import Player from "./Components/Player/Player";
-import { MonsterContextProvider } from "./context/MonsterContext";
+import { GameContextProvider } from "./context/GameContext";
 
 export default function App() {
   return (
     <>
-      <div>
-        <MonsterContextProvider>
-          <MonsterContainer />
-          <Player />
-        </MonsterContextProvider>
+      <div className='app-container'>
+        <GameContextProvider>
+          <div className='nes-container p-4'>
+            <MonsterContainer />
+          </div>
+          <div className='nes-container p-4'>
+            <Player />
+          </div>
+        </GameContextProvider>
       </div>
     </>
   );
