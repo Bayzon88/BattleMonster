@@ -6,4 +6,5 @@ Link to Charles' repo [Firebase-Srpingboot](https://github.com/ccpink/firebase-s
 
 The project was developed using React, TypeScript, SASS, NES.css, and reads data from the Springboot REST API. The idea was to create a "Yu-gi-oh meets Pokemon" type of game, the player will take turns to attack 2 monsters at a time using magic cards with specific damage and manaCost.
 
-![Welcome page to Battle Monster](http://url/to/img.png)
+![Welcome page to Battle Monster](https://github.com/Bayzon88/BattleMonster/blob/main/src/assets/images/welcome_page.PNG)
+![Graphic interface of Battle Monster](https://github.com/Bayzon88/BattleMonster/blob/main/src/assets/images/game.PNG)
