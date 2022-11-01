@@ -1,0 +1,17 @@
+.welcome {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  &__message {
+    width: 500px;
+    height: 300px;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+  }
+}

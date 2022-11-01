@@ -15,21 +15,23 @@ export default function Player(): JSX.Element {
 
   return (
     <div className='player' id='player'>
-      <div className='healthBar'>
-        <progress className='nes-progress is-primary ' value={health} max={maxHealth}></progress>
-        <figcaption className='figure-caption'>
-          {health}/{maxHealth}
-        </figcaption>
-      </div>
-      <div className='manaBar'>
-        <progress
-          className='nes-progress is-success '
-          value={gameContextProvider?.mana}
-          max={maxMana}
-        ></progress>
-        <figcaption className='figure-caption'>
-          {gameContextProvider?.mana == undefined ? 0 : gameContextProvider?.mana}/{maxMana}
-        </figcaption>
+      <div className='player__bars'>
+        <div className='healthBar'>
+          <progress className='nes-progress is-primary ' value={health} max={maxHealth}></progress>
+          <figcaption className='figure-caption'>
+            {health}/{maxHealth}
+          </figcaption>
+        </div>
+        <div className='manaBar'>
+          <progress
+            className='nes-progress is-success '
+            value={gameContextProvider?.mana}
+            max={maxMana}
+          ></progress>
+          <figcaption className='figure-caption'>
+            {gameContextProvider?.mana == undefined ? 0 : gameContextProvider?.mana}/{maxMana}
+          </figcaption>
+        </div>
       </div>
       <CardContainer cards={Cards}></CardContainer>
     </div>

@@ -1,14 +1,23 @@
+import { useContext } from "react";
+import { GameController } from "../../context/GameController";
+
 export default function GameOver(): JSX.Element {
+  const gameControllerProvider = useContext(GameController);
+  const restartGame = () => {
+    window.location.reload();
+  };
   return (
-    <dialog className='nes-dialog' id='dialog-default'>
-      <form method='dialog'>
-        <p className='title'>Dialog</p>
-        <p>Alert: this is a dialog.</p>
-        <menu className='dialog-menu'>
-          <button className='nes-btn'>Cancel</button>
-          <button className='nes-btn is-primary'>Confirm</button>
-        </menu>
-      </form>
-    </dialog>
+    <>
+      <div className='nes-container with-title '>
+        <p className='title'>Game Status</p>
+        <p>Game Over! Try Again!</p>
+        <button onClick={restartGame} type='button' className='nes-btn is-primary'>
+          Play Again?
+        </button>
+        <button type='button' className='nes-btn is-error'>
+          Exit
+        </button>
+      </div>
+    </>
   );
 }

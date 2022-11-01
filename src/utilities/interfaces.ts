@@ -37,3 +37,7 @@ export interface GameControllerType {
   currentTurn: string;
   setCurrentTurn: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface GameStart {
+  gameStarted: () => void;
+}

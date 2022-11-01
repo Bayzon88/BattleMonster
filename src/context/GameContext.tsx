@@ -39,7 +39,11 @@ export const GameContextProvider = ({ children }: any) => {
     selectedMonster.currentHealth -= damageFromCard;
   };
 
-  useEffect(() => {}, [selectedMonster.currentHealth]);
+  useEffect(() => {
+    if (mana <= 0 || playerHealth <= 0) {
+      setIsGameOver(true);
+    }
+  }, [mana, playerHealth]);
   return (
     <GameContext.Provider
       value={{

@@ -6,7 +6,7 @@ export default function CurrentTurn(): JSX.Element {
   return (
     <div className='nes-container with-title '>
       <p className='title'>Game Status</p>
-      <p>Is {gameControllerProvider?.currentTurn}'s turn</p>
+      <p>It's {gameControllerProvider?.currentTurn}'s turn</p>
     </div>
   );
 }

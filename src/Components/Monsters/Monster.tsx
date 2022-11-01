@@ -10,7 +10,7 @@ interface MonsterProp {
 
 const Monster: FC<MonsterProp> = ({ monster }) => {
   const gameContextProvider = useContext(GameContext);
-
+  const [isDead, setIsDead] = useState<boolean>(false);
   const [currentHealth, setCurrentHealth] = useState<number>(monster.maxHP);
 
   const healthHandler = () => {
@@ -29,7 +29,8 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
 
     if (
       gameContextProvider?.selectedMonster === monster &&
-      gameContextProvider.isGameOver == false
+      gameContextProvider.isGameOver == false &&
+      isDead == false
     ) {
       let dmg: number = gameContextProvider?.damageFromCard;
 
@@ -37,6 +38,12 @@ const Monster: FC<MonsterProp> = ({ monster }) => {
     }
   }, [gameContextProvider?.damageFromCard]);
 
+  useEffect(() => {
+    if (currentHealth < 0) {
+      setCurrentHealth(0);
+      setIsDead(true);
+    }
+  }, [currentHealth]);
   // useEffect(() => {
   //   monster.currentHealth = currentHealth;
   //   // monsterContextProvider?.setSelectedMonster(monster);
